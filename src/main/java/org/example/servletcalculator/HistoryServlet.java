@@ -18,7 +18,7 @@ public class HistoryServlet extends HttpServlet {
         HttpSession session = req.getSession();
         InMemoryHistoryOfExpressions history = (InMemoryHistoryOfExpressions) session.getAttribute("history");
 
-        if (history != null){
+        if (history != null) {
             req.setAttribute("history", history.getHistory());
         } else {
             req.setAttribute("alert", "There is no history of expressions yet!");

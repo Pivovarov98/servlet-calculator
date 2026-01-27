@@ -27,7 +27,7 @@ public class CalculatorServlet extends HttpServlet {
         HttpSession session = req.getSession();
         InMemoryHistoryOfExpressions history = (InMemoryHistoryOfExpressions) session.getAttribute("history");
 
-        if (history == null){
+        if (history == null) {
             history = InMemoryHistoryOfExpressions.createHistory();
             session.setAttribute("history", history);
         }
@@ -40,16 +40,15 @@ public class CalculatorServlet extends HttpServlet {
                 "*", new MultiplyOperation(),
                 "/", new DivideOperation()
         );
-
         String expression = req.getParameter("expression");
-
         Matcher matcher = pattern.matcher(expression);
+
         if (matcher.matches()) {
             double num1 = Double.parseDouble(matcher.group(1));
             double num2 = Double.parseDouble(matcher.group(3));
             String operator = matcher.group(2);
 
-            if (num2 == 0){
+            if (num2 == 0) {
                 req.setAttribute("alert", "You can't divide by zero");
                 req.getRequestDispatcher("/pages/calculator.jsp").forward(req, resp);
                 return;
@@ -58,7 +57,7 @@ public class CalculatorServlet extends HttpServlet {
             Calculator calculator = new Calculator(operations);
             double result = calculator.calculate(num1, num2, operator);
 
-            if (result % 1 == 0){
+            if (result % 1 == 0) {
                 req.setAttribute("result", (int) result);
                 history.add(expression + "=" + (int) result);
             } else {
