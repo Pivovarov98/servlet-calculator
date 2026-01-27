@@ -28,7 +28,7 @@ public class CalculatorServlet extends HttpServlet {
         InMemoryHistoryOfExpressions history = (InMemoryHistoryOfExpressions) session.getAttribute("history");
 
         if (history == null){
-            history = new InMemoryHistoryOfExpressions();
+            history = InMemoryHistoryOfExpressions.createHistory();
             session.setAttribute("history", history);
         }
 

@@ -6,8 +6,12 @@ import java.util.List;
 public class InMemoryHistoryOfExpressions {
     private final List<String> history;
 
-    public InMemoryHistoryOfExpressions(){
+    private InMemoryHistoryOfExpressions(){
         history = new ArrayList<>();
+    }
+
+    public static InMemoryHistoryOfExpressions createHistory(){
+        return new InMemoryHistoryOfExpressions();
     }
 
     public void add(String expression){
