@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,5 +9,26 @@
 </head>
 <body>
 <jsp:include page="/fragments/_header.jsp"/>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <form action="/calculator" method="post">
+                <div class="mb-3">
+                    <label for="exampleInputText" class="form-label">Expression</label>
+                    <c:choose>
+                        <c:when test="${result != null}">
+                            <input type="text" name="expression" class="form-control" value="${result}">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="text" name="expression" class="form-control">
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
