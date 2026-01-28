@@ -11,6 +11,11 @@
 <jsp:include page="/fragments/_header.jsp"/>
 
 <div class="container">
+<c:if test="${alert != null}">
+        <div class="alert alert-warning" role="alert">
+                ${alert}
+        </div>
+    </c:if>
     <div class="row justify-content-center">
         <div class="col-3">
             <form action="/calculator" method="post">
